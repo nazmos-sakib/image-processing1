@@ -1,0 +1,64 @@
+import java.awt.*;
+import javax.swing.*;
+
+public class Diagramm extends JPanel
+{
+private int[] werte;
+private int N;
+private double a=0.0;
+private double b=128.0;
+
+public Diagramm()
+
+{
+  this.N=100;
+  werte=new int[100];
+  setLayout(null);
+  setPreferredSize(new Dimension(100, 256));
+}
+
+
+  void setParam(int[] werte,double a, double b)
+  {
+    this.N=werte.length;
+    this.setPreferredSize(new Dimension(werte.length, 256));
+    this.werte=werte;
+    this.a=a;
+    this.b=b;
+
+  }
+
+  public void paintComponent(Graphics g)
+  {
+    //Lila Hintergrund zeichen
+    g.setColor(new Color(135,12,135));
+    if(werte !=null){
+
+    g.fillRect(0,0,N,256);
+
+      // Daten zeichnen
+      g.setColor(new Color(12,255,167));
+      for(int i=0;i<N;i++)
+      {
+        int wert=0;
+        wert=werte[i];
+        
+        g.fillRect(i,256-wert,1,wert);
+
+      }
+      
+      // Gerade zeichnen
+      g.setColor(new Color(100,12,255,100));
+      for(int i=0;i<N;i++)
+      {
+        int wert=0;
+        wert=(int)(a*(double)i + b);
+
+        g.fillRect(i,256-wert,1,wert);
+
+      }
+      
+      
+      }
+  }
+}
